@@ -1,0 +1,94 @@
+<h1>
+	{{ titulo }}
+</h1>
+
+<p>Datos del empleado:</p>
+<div *ngIf ="trabajador_externo == true">
+<button (click)="cambiarExterno(false)">mostrar trabajadores</button>
+<ul>
+	<li>{{empleado.nombre}}</li>
+	<li>{{empleado.edad}}</li>
+	<li>{{empleado.trabajo}}</li>
+	<li *ngIf ="empleado.contratado == true">Esta contratado</li>
+	<li *ngIf ="empleado.contratado == false">No esta contratado</li></ul>
+</div>
+<div  *ngIf ="trabajador_externo == false">
+<button (click)="cambiarExterno(true)">mostrar empleados</button>
+<ul>
+	<li>{{trabajadores[0].nombre}}</li>
+	<li>{{trabajadores[0].edad}}</li>
+	<li>{{trabajadores[0].trabajo}}</li>
+	<li *ngIf ="trabajadores[0].contratado == true">Esta contratado</li>
+	<li *ngIf ="trabajadores[0].contratado == false">No esta contratado</li>
+</ul>
+</div>
+<hr>
+<!--directiva *ngFor -->
+<div *ngIf ="mostrartrabajadores == false">
+	<button (click)="seMuestranTrabajadores(true)">Mostrar lista de trabajadores</button>
+</div>
+<div *ngIf ="mostrartrabajadores == true">
+	<button (click)="seMuestranTrabajadores(false)">Ocultar lista de trabajadores</button>
+	<ul>				<!--en cada iteracion la variable empleado se llenara con los datos del arreglo de objetos -->
+		<li *ngFor ="let empleado of trabajadores; let i = index "><!--colocandolo de esta forma cada vez que itere creara una lista-->
+		<strong>Empleado {{i+1}}:</strong>
+			<ul>
+				<li>{{empleado.nombre}}</li>
+				<li>{{empleado.edad}}</li>
+				<li>{{empleado.trabajo}}</li>
+				<li *ngIf ="empleado.contratado == true">Esta contratado</li>
+				<li *ngIf ="empleado.contratado == false">No esta contratado</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<hr><!--selector de colores-->
+	<h3>Selector de colores</h3>
+	<button (click)="logColorSeleccionado()">mostrar log</button>
+	<input type="text" [(ngModel)]="color_seleccionado"/><!--style como atributo html-->
+	<pre [style.border]="color_seleccionado == 'red'? '1px solid black':'none'"
+		 [class.fondoAzul]="color_seleccionado == 'blue'"
+		 [ngClass]="{
+		 	fondoVerde: color_seleccionado =='green',
+		 	fondoAmarillo: color_seleccionado =='yellow',
+		 	letraGrande: 1 == 1
+		}"
+		 ><!--cuando color_seleccionado es igual a 'azul, se llaman los atributos de la clase fondoAzul-->
+		Color elegido:{{color_seleccionado}}
+	</pre><!--[ngClass] en funcion de una condicion, tambien se puede utilizar para que solo llame a las clases sin condicion-->
+
+	<div [ngStyle]="{
+	'background':color_seleccionado,
+	'width': '200px',
+	'height': '200px',
+	'float': 'right',
+	'margin-right':'65%'}"></div>
+	<div [ngStyle]="{
+	'clear': 'both'
+	}"></div>
+<hr>
+<!--directiva [ngSwitch]="propiedad a utilizar" -->
+<!--el primer color, es la propiedad color que declaramos en nuestra clase y el segundo 'color' es la propiedad css -->
+<h3 [ngClass]="['fondoVerde','letraGrande']"
+>Colores Switch</h3>
+
+<ul [ngSwitch]="color">
+	<li *ngSwitchCase="'red'" [ngStyle]="{
+	'background':color,
+	'color':'white',
+	'padding':'20px'}">
+		Es color rojo
+	</li>
+	<li *ngSwitchCase="'green'" [ngStyle]="{
+	'background':color,
+	'color':'white',
+	'padding':'20px'}">
+		Es color verde
+	</li>
+	<li *ngSwitchCase="'blue'" [ngStyle]="{
+	'background':color,
+	'color':'white',
+	'padding':'20px'}">
+		Es color azul
+	</li>
+</ul>

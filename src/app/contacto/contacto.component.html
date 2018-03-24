@@ -1,0 +1,10 @@
+<h3>
+	{{titulo}}
+</h3>
+<div *ngIf="parametro">
+	El parametro ingresado es: {{parametro}}
+</div>
+<!--sino existe parametro-->
+<div *ngIf="!parametro">
+	<button (click)="redirigir()">Ir a inicio</button>
+</div>
