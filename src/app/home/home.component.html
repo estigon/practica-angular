@@ -1,3 +1,18 @@
-<h3>
-	{{titulo}}
-</h3>
+<br>
+{{fecha | date: 'dd/MM/yyyy'}}<!--lo que esta a partir de | es un pipe. estos permiten modificar-->
+<br>
+{{fecha | date: 'fullDate' | uppercase}}<!--la forma en la que se mostrara el objeto fecha-->
+<br>
+{{5 | conversor: 7}}<!--de esta forma pasamos el segundo parametro-->
+<br>
+<h2>{{titulo}}</h2>
+<h3>Listado de prendas</h3>
+<br>
+<input type="text" [(ngModel)]="prenda_a_guardar"><button (click)="guardarPrenda()">Agregar prenda</button>
+<p *ngIf="prenda_a_guardar">La prenda a guardar es: {{prenda_a_guardar}}</p>
+<ul>
+	<li *ngFor="let prenda of listado_ropa; let id= index ">
+		{{id}} {{prenda}}
+		<button (click)="eliminarRopa(id)">eliminar</button>
+	</li>
+</ul>

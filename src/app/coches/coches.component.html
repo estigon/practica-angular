@@ -1,0 +1,51 @@
+<style>
+	input[type="text"], span{
+		display: block;
+		width: 100%;
+	}
+	div{
+		float: left;
+	}
+	.listado{
+		 margin-left: 30px; 
+		 margin-top: 33px;
+	}
+</style>
+<h1>Componente de coche</h1>
+<div>			<!--capturamos un evento de tipo ngSubmit y al hacerlo, llamamos al metodo onSubmit()-->
+	<form #formCoche="ngForm" (ngSubmit)="onSubmit(); formCoche.reset()"><!--el reset() elimina de los campos si han sido tocados-->
+		<p>
+			<label>Modelo</label>
+			<input type="text" name="modelo" #modelo="ngModel" [(ngModel)]="coche.modelo" required>
+			<span *ngIf="modelo.touched && modelo.invalid">Introduce un modelo de coche</span>
+		</p>
+		<p>
+			<label>Color</label>
+			<input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required>
+			<span *ngIf="color.touched && color.invalid">Introduce un color de coche</span>
+		</p>
+		<p>
+			<label>Año</label>
+			<input type="text" name="anio" #anio="ngModel" [(ngModel)]="coche.anio" required pattern="[0-9]+">
+			<span *ngIf="anio.touched && !anio.valid">Introduce un valor numerico</span>
+		</p>
+		<input type="submit" value="Guardar" [disabled]="!formCoche.form.valid">
+	</form>
+</div>
+<div class="listado">
+	Listado de Coches:
+	<ul>
+		<li *ngFor="let auto of arreglo_de_autos">
+			{{auto.modelo}} - {{auto.color}} - {{auto.anio}}
+		</li>
+	</ul>
+</div>
+<div class="listado">
+	Listado de Articulos:
+	<ul>
+		<li *ngFor="let articulo of articulos">
+			{{articulo.id}} {{articulo.title}}
+		</li>
+	</ul>
+	<span *ngIf="!articulos">Cargando listado...</span>
+</div>

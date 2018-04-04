@@ -6,6 +6,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { FrutaComponent } from './fruta/fruta.component';
 import { HomeComponent } from './home/home.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { CochesComponent } from './coches/coches.component';
 
 const appRoutes: Routes = [
 	
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
 	{path: 'contacto/:id', component: ContactoComponent},//recibir parametro por url
 	{path: 'empleado', component: EmpleadoComponent},
 	{path: 'fruta', component: FrutaComponent},
+	{path: 'coches', component: CochesComponent},
 	{path: '**', component: HomeComponent}// ruta para cuando existe un error y no se consigue el componente '**'
 ];
 
