@@ -1,0 +1,18 @@
+<h4>{{title}}</h4>
+<!--si es true, entonces cargo el template admin, sino el template noAdmin-->
+
+<div *ngIf="administrador; then admin else noAdmin"></div>
+
+<!--opcion con template, la etiqueta del template es invisible hasta que entra en el else o el then.
+por si sola sin el else no se activa el template-->
+<ng-template #admin>
+	<button (click)="cambiar(false)" >Cambiar</button>
+	<strong style="background-color: lightgreen">eres el administrador de la web-app</strong>
+</ng-template>
+
+<ng-template #noAdmin>
+	<button (click)="cambiar(true)" >Cambiar</button>
+	<strong style="background-color: red">no eres administrador de la web-app</strong>
+</ng-template>
+
+	

@@ -7,6 +7,8 @@ import { FrutaComponent } from './fruta/fruta.component';
 import { HomeComponent } from './home/home.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CochesComponent } from './coches/coches.component';
+import { PlantillasComponent } from './plantillas/plantillas.component';
+
 
 const appRoutes: Routes = [
 	
@@ -16,6 +18,7 @@ const appRoutes: Routes = [
 	{path: 'empleado', component: EmpleadoComponent},
 	{path: 'fruta', component: FrutaComponent},
 	{path: 'coches', component: CochesComponent},
+	{path: 'plantillas', component: PlantillasComponent},
 	{path: '**', component: HomeComponent}// ruta para cuando existe un error y no se consigue el componente '**'
 ];
 
